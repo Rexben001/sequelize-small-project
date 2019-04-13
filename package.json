@@ -4,8 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --require @babel/register app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --exec babel-node app.js",
+    "migrate": "sequelize db:migrate",
+    "dropTable": "sequelize db:migrate:undo:all",
+    "seed": "sequelize db:seed:all",
+    "unseed": "sequelize db:seed:undo:all",
+    "pre:test:migrate": "NODE_ENV=test npm run migrate",
+    "pre:test:seed": "NODE_ENV=test npm run seed ",
+    "pre:test:unseed": "NODE_ENV=test npm run unseed ",
+    "test": "NODE_ENV=test mocha --timeout 100000 --require @babel/register --require @babel/polyfill ./*test.js --exit || true"
   },
   "keywords": [],
   "author": "",
@@ -13,10 +20,13 @@
   "dependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
-    "@babel/polyfill": "^7.4.3",
+    "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.3",
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
     "express": "^4.16.4",
+    "mocha": "^6.1.3",
     "pg": "^7.9.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^5.2.15"

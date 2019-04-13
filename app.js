@@ -9,10 +9,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-app.post('/api/user', (req, res) => {
-  User.create(req.body)
-    .then(user => res.json({ user }))
-  .catch(e => console.error(e))
+app.post('/api/user', async (req, res) => {
+  try {
+    const response = await User.create(req.body);
+    // .then(user => res.json({ user }))
+     res.json({ response })
+  } catch (e) {
+    console.error(e)
+  }
 });
 
 app.post('/api/comment', (req, res) => {
@@ -25,8 +29,9 @@ app.get('/api/comment/:id', (req, res) => {
   // attributes is used to limit the coumn names to return
   // include is used for join
   // make sure your foreign key to be the name of your model name plus Id e.g UserID
-  Comment.findById(   req.params.id,
+  Comment.findAll(
     {
+       where: {id: req.params.id},
     attributes: ['post', 'reaction'],
     include: [{
       model: User,
@@ -65,6 +70,11 @@ app.post('/api/emoji', (req, res) => {
 
 // })
 
-app.listen(3002, () => {
+const PORT = process.env.PORT || 3002
+
+
+app.listen(PORT, () => {
     console.log('Working');
-  });
+});
+  
+export default app;

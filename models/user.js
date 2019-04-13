@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   User.associate = function(models) {
     // associations can be defined here
-    User.hasMany(models.Comment);
-    User.hasMany(models.Emoji);
+    User.hasMany(models.Comment, { onUpdate: 'cascade', onDelete: 'cascade', hooks: true });
+    User.hasMany(models.Emoji, { onUpdate: 'cascade', onDelete: 'cascade', hooks: true });
   };
   return User;
 };
