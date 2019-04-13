@@ -9,6 +9,7 @@
     "dropTable": "npx sequelize db:migrate:undo:all",
     "seed": "./node_modules/.bin/sequelize db:seed:all",
     "unseed": "npx sequelize db:seed:undo:all",
+    "pre:test:dropTable": "NODE_ENV=test npm run dropTable",
     "pre:test:migrate": "NODE_ENV=test npm run migrate",
     "pre:test:seed": "NODE_ENV=test npm run seed ",
     "pre:test:unseed": "NODE_ENV=test npm run unseed ",
