@@ -8,10 +8,10 @@
     "port": 5432
   },
   "test": {
-    "username": "rex",
-    "password": null,
-    "database": "new_sequelize_test",
-    "host": "127.0.0.1",
+    "username": "zdrhktfw",
+    "password": "GYE3NZkk6he9Uef8SiNd1BXnM-6b75BH",
+    "database": "zdrhktfw",
+    "host": "stampy.db.elephantsql.com",
     "dialect": "postgres",
     "port": 5432
     },
