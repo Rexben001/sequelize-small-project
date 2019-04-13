@@ -17,6 +17,7 @@ before_script:
 
 script:  
   - npm install
+  - npm run pre:test:dropTable
   - npm run pre:test:migrate
   - npm run pre:test:unseed
   - npm run pre:test:seed
