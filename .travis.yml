@@ -17,7 +17,6 @@ before_script:
 
 script:  
   - npm install
-  - npm install sequelize -g
   - npm run pre:test:migrate
   - npm run pre:test:unseed
   - npm run pre:test:seed
