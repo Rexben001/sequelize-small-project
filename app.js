@@ -15,14 +15,17 @@ app.post('/api/user', async (req, res) => {
     // .then(user => res.json({ user }))
      res.json({ response })
   } catch (e) {
-    console.error(e)
+    res.json({e: e.errors[0].message})
   }
 });
 
-app.post('/api/comment', (req, res) => {
-  Comment.create(req.body)
-    .then(comment => res.json({ comment }))
-    .catch(e => res.json({error: e}))
+app.post('/api/comment', async (req, res) => {
+  try {
+  const response = await Comment.create(req.body)
+     res.json({ response })
+    } catch (e) {
+      res.json({e: e.errors[0].message})
+  }
 });
 
 app.get('/api/comment/:id', (req, res) => {
